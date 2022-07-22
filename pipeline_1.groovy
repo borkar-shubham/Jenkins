@@ -33,15 +33,21 @@ pipeline {
               }
             }
             steps {
-                sh 'rm -rf docker-images'
-                sh 'mkdir docker-images'
-                sh 'rm -rf docker-images'
-                sh 'cd docker-images'
-                sh 'cp /var/lib/jenkins/workspace/*/*/target/*{.war,.jar} .'
-                sh 'touch dockerfile'
-                
-                sh 'sudo docker build -t tomcat-server:1.0'
-                sh 'sudo docker run -itd --name tomcat-server -p 8888:8080 tomcat-server:1.0
+                sh '''rm -rf docker-images
+                mkdir docker-images
+                rm -rf docker-images
+                cd docker-images
+                cp /var/lib/jenkins/workspace/*/*/target/*{.war,.jar} .
+                touch dockerfile
+                cat <<EOT>> dockerfile
+                FROM tomcat
+                ADD *.war /usr/local/tomcat/webapps
+                CMD ["catalina.sh","run"]
+                EXPOSE 8080
+                EOT
+                sudo docker build -t tomcat-server:1.0
+                sudo docker run -itd --name tomcat-server -p 8888:8080 tomcat-server:1.0
+                '''
             }
         }
     }
