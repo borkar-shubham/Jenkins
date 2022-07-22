@@ -39,7 +39,9 @@ pipeline {
                 sh 'cd docker-images'
                 sh 'cp /var/lib/jenkins/workspace/*/*/target/*{.war,.jar} .'
                 sh 'touch dockerfile'
-                sh 'cat <<EOT>>dockerfile<<EOT
+                
+                sh 'sudo docker build -t tomcat-server:1.0'
+                sh 'sudo docker run -itd --name tomcat-server -p 8888:8080 tomcat-server:1.0
             }
         }
     }
