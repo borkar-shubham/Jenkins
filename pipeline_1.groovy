@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('CloneGitRepo') {
             steps {
-                git branch: 'main', url: 'https://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@github.com/borkar-shubham/Private_1.git'
+                git branch: 'main', url: 'https://<session-tocken>@github.com/borkar-shubham/Private_1.git'
                     }
         }
         stage('MavenCompile') {
@@ -22,7 +22,7 @@ pipeline {
         }
         stage('MavenBuild') {
             steps {
-                git branch: 'main', url: 'https://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@github.com/borkar-shubham/Private_1.git'
+                git branch: 'main', url: 'https://<session-tocken>@github.com/borkar-shubham/Private_1.git'
                 sh 'mvn package'
                     }
         }
