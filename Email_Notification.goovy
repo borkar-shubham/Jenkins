@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+    stages {
+        stage() {
+            steps {
+                echo "Hello world"
+            }
+        }  
+    }
+    post{
+        always{
+            mail to: 'mr.shubhamborkar@gmail.com',
+            subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!',
+            body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: Check console output at $BUILD_URL to view the results.'
+        }
+    }
+}
