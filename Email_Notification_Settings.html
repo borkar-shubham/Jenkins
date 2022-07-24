@@ -1,142 +1,35 @@
-Extended E-mail Notification
-SMTP server
-smtp.gmail.com
-SMTP Port
-465
-Credentials
+Extended E-mail Notification:
+SMTP server : smtp.gmail.com
+SMTP Port : 465
+Advanced:
+Credentials : Add Username and Generated Application Specific Password if 2 factor auth is enabled
+#Use SSL
+#Use TLS
 
-mr.shubhamborkar@gmail.com/******
-
-Use SSL
-
-Use TLS
-Advanced Email Properties
-Default user e-mail suffix
-?
-Charset
-UTF-8
-Additional accounts
-Default Content Type
-?
-
-HTML (text/html)
-List ID
-?
-
-Add 'Precedence: bulk' E-mail Header
-?
-Default Recipients
-?
+Default Recipients: (Enter list of emails separated with comma)
 mr.shubhamborkar@gmail.com,shubhamborkar909@gmail.com,shubham-borkar@outlook.com
-Reply To List
-?
-Emergency reroute
-?
-Allowed Domains
-?
-Excluded Recipients
-?
-Default Subject
-?
+
+Default Subject:
 $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!
-Maximum Attachment Size
-?
--1
-Default Content
-?
-$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
 
-Check console output at $BUILD_URL to view the results.
-Default Pre-send Script
-?
-Default Post-send Script
-?
-Additional groovy classpath
-?
+Default Content:
+$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: Check console output at $BUILD_URL to view the results.
 
-Enable Debug Mode
-?
-
-Require Administrator for Template Testing
-?
-
-Enable watching for jobs
-?
-
-Allow sending to unregistered users
-?
-Default Triggers
-?
-
+Default Triggers: (Choose between list)
 Aborted
-
-
 Always
-
-
 Before Build
-
-
 Failure - 1st
-
-
 Failure - 2nd
-
-
 Failure - Any
 
-
-Failure - Still
-
-
-Failure - X
-
-
-Failure -> Unstable (Test Failures)
-
-
-Fixed
-
-
-Not Built
-
-
-Script - After Build
-
-
-Script - Before Build
-
-
-Status Changed
-
-
-Success
-
-
-Test Improvement
-
-
-Test Regression
-
-
-Unstable (Test Failures)
-
-
-Unstable (Test Failures) - 1st
-
-
-Unstable (Test Failures) - Still
-
-
-Unstable (Test Failures)/Failure -> Success
-
-Content Token Reference
-?
-E-mail Notification
-SMTP server
-smtp.gmail.com
-Default user e-mail suffix
-?
-One or more fields in this block have been edited. 
-
+E-mail Notification:
+SMTP server: smtp.gmail.com
+Advanced:
+Use SMTP Authentication: 
+User-Name: mr.shubhamborkar@gmail.com 
+Password: Generated Application Specific Password
+#Use SSL
+#Use TLS
+SMTP Port : 465
 Test configuration by sending test e-mail
