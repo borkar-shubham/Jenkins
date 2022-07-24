@@ -2,31 +2,27 @@ pipeline {
     agent {label ('linux-node')}
     agent 'any'
     agent 'none'
-
     stages {
-        stage('Build') {
+        stage('stage-name') {
             steps {
-                sh 'make' 
-                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true 
+                command_1 'Attributes'
+                command_2 'Attributes'
             }
         }
-        stage('Test') {
+        stage('stage-name') {
             steps {
-                /* `make check` returns non-zero on test failures,
-                * using `true` to allow the Pipeline to continue nonetheless
+                /* `This is a comment-1,
+                * Comment Line 2
                 */
-                sh 'make check || true' 
-                junit '**/target/*.xml' 
+                command_1 'Attributes'    
             }
         }
-        stage('Deploy') {
-            when {
-              expression {
-                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
-              }
-            }
+        stage('stage-name') {
             steps {
-                sh 'make publish'
+                sh '''command-1
+                      command-2
+                      command-3
+                   '''           
             }
         }
     }
