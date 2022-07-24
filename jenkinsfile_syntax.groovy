@@ -1,5 +1,7 @@
 pipeline {
     agent {label ('linux-node')}
+    agent 'any'
+    agent 'none'
 
     stages {
         stage('Build') {
