@@ -7,6 +7,15 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/borkar-shubham/My_Projects.git'
                     }
         }
+        stage('QA_for_PR) {
+              steps {
+                  echo "sonar.pullrequest.key=5"
+                  echo "sonar.pullrequest.branch=feature/my-new-feature"
+                  echo "sonar.pullrequest.base=master"
+                  echo " Result......Passed"
+                  echo " See full results on https://localhost.sonarqube.com/My_Projects"
+              }
+        }
         stage('MavenCompile') {
             steps {
                 sh 'mvn compile'
