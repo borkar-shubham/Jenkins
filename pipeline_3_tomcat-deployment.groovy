@@ -7,7 +7,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/borkar-shubham/My_Projects.git'
                     }
         }
-        stage('QA_for_PR) {
+        stage('QA_for_PR') {
               steps {
                   echo "sonar.pullrequest.key=5"
                   echo "sonar.pullrequest.branch=feature/my-new-feature"
