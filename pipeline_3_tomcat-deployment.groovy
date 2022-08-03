@@ -33,7 +33,7 @@ pipeline {
               }
             }
             steps {
-                echo "Deploying the app on dev application server.
+                sh 'echo "Deploying the app on dev application server"'
                //deploy adapters: [tomcat9(credentialsId: 'fbf87d29-4ab1-4694-bbac-bf551e13aa57', path: '', url: 'http://54.209.253.32:8080/')], contextPath: '/student', onFailure: false, war: '**/*.war'
             }
         }
