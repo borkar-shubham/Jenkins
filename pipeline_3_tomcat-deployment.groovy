@@ -11,7 +11,7 @@ pipeline {
               steps {
                   echo "sonar.pullrequest.key=5"
                   echo "sonar.pullrequest.branch=feature/my-new-feature"
-                  echo "sonar.pullrequest.base=master"
+                  echo "sonar.pullrequest.base=main"
                   echo " Result......Passed"
                   echo " See full results on https://localhost.sonarqube.com/My_Projects"
               }
