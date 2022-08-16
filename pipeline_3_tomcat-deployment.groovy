@@ -45,6 +45,11 @@ pipeline {
                 sh 'mvn package'
                 }
         }
+        stage('UploadArtifacts') {
+            steps {
+                
+                }
+        }
         stage('DeployToServer') {
             when {
               expression {
