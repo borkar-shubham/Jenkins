@@ -9,8 +9,8 @@ pipeline {
         DOCKER_USER = credentials('docker-username')
         DOCKER_PASS = credentials('docker-password')
     }
-    stages('Installing Dependencies') {
-        stage {
+    stages {
+        stage('Installing Dependencies') {
             steps
                 sh 'chmod +x dependecies.sh'
                 sh './dependecies.sh'
