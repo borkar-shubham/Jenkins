@@ -11,9 +11,10 @@ pipeline {
     }
     stages {
         stage('Installing Dependencies') {
-            steps
+            steps {
                 sh 'chmod +x dependecies.sh'
                 sh './dependecies.sh'
+            }
         }
         stage('CloneGitRepo') {
             steps {
