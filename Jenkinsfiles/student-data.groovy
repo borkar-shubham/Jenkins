@@ -5,13 +5,16 @@ pipeline {
     // parameters {
     //     string(name: 'project_repo', defaultValue: '', description: 'Please enter your project repo')
     // }
-    // environment {
-    //     //AWS_CREDENTIALS = credentials('aws-credentials-id') // Replace with your Jenkins credentials ID
-    //     GIT_REPO = "${params.project_repo}" // Replace with your repo
-    //     //BRANCH = 'main'
-    //     //TERRAFORM_DIR = 'infra' // Path to Terraform scripts
-    // }
-    stages {
+    environment {
+        DOCKER_USER = credentials('docker-username')
+        DOCKER_PASS = credentials('docker-password')
+    }
+    stages('Installing Dependencies') {
+        stage {
+            steps
+                sh 'chmod +x dependecies.sh'
+                sh './dependecies.sh'
+        }
         stage('CloneGitRepo') {
             steps {
                 git branch: 'main', url: 'https://github.com/borkar-shubham/Student-Data.git'
@@ -43,11 +46,10 @@ pipeline {
         stage('MavenBuild') {
             steps {
                 git branch: 'main', url: 'https://github.com/borkar-shubham/Student-Data.git'
-              //sh 'mvn package'
-                echo "Build Completed"
+                sh 'mvn clean package'
                 }
         }
-        stage('DeployToServer') {
+        stage('ImageBuild&Push') {
             when {
               expression {
                 currentBuild.result == null || currentBuild.result == 'SUCCESS' 
@@ -55,7 +57,10 @@ pipeline {
             }
             steps {
                //deploy adapters: [tomcat9(credentialsId: 'fbf87d29-4ab1-4694-bbac-bf551e13aa57', path: '', url: 'http://184.73.39.198:8080/')], contextPath: '/student-prod', onFailure: false, war: '**/*.war'
-                echo "Deployment Success" 
+                sh 'echo Build Succeed, creating the docker image'
+                sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+                sh 'docker build -t shubhamborkar/studentapp:latest .'
+                sh 'docker push shubhamborkar/studentapp:latest'    
             }
         }
     }
