@@ -10,16 +10,16 @@ pipeline {
         DOCKER_PASS = credentials('docker-password')
     }
     stages {
+        stage('CloneGitRepo') {
+            steps {
+                git branch: 'main', url: 'https://github.com/borkar-shubham/Student-Data.git'
+                    }
+        }
         stage('Installing Dependencies') {
             steps {
                 sh 'chmod +x dependecies.sh'
                 sh './dependecies.sh'
             }
-        }
-        stage('CloneGitRepo') {
-            steps {
-                git branch: 'main', url: 'https://github.com/borkar-shubham/Student-Data.git'
-                    }
         }
         // stage("Sonar-Scan") {
         //     steps {
