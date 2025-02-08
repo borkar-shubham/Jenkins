@@ -46,7 +46,7 @@ pipeline {
         }
         stage('MavenBuild') {
             steps {
-                git branch: 'main', url: 'https://github.com/borkar-shubham/Student-Data.git'
+                git branch: 'main', url: 'https://github.com/borkar-shubham/cbz-app.git'
                 sh 'mvn clean package'
                 }
         }
