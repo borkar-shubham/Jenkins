@@ -3,6 +3,7 @@ pipeline {
         label ('cm-linux')
     }
     environment {
+        DOCKER_CREDENTIALS = credentials('docker-creds')
         IMAGE_NAME = 'mychatapp'
         IMAGE_TAG = 'latest'
     }
@@ -27,22 +28,24 @@ pipeline {
         //         }
         //     }
         // }
-        stage('Push to Registry') {
-          when {
-              expression {
-                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
-              }
-            }  
-          steps {
-                withDockerRegistry([credentialsId: 'docker-creds', url: 'https://index.docker.io/v1/']) {
-                    script {
-                        sh '''
-                        sudo chmod 666 /var/run/docker.sock
-                        docker tag ${IMAGE_NAME}:${IMAGE_TAG} shubhamborkar/${IMAGE_NAME}:${IMAGE_TAG}
-                        docker push shubhamborkar/${IMAGE_NAME}:${IMAGE_TAG}
-                        '''
+        stage('Login to DockerHub') {
+            steps {
+                script {
+                    withDockerRegistry([credentialsId: 'docker-creds', url: 'https://index.docker.io/v1/']) {
+                        sh "docker login -u \$DOCKER_USERNAME -p \$DOCKER_PASSWORD"
                     }
                 }
+            }
+        }
+        stage('Push to Registry') {
+            steps {
+                sh '''
+                echo Build Succeed, Creating the docker image..
+                echo Building the docker image..
+                docker build -t shubhamborkar/cbz-java:latest .
+                echo Pushing the image onto the Dockerhub..
+                docker push shubhamborkar/cbz-java:latest
+                '''
             }
         }
     }
