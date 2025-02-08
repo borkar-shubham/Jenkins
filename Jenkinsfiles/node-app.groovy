@@ -3,7 +3,7 @@ pipeline {
         label ('cm-linux')
     }
     environment {
-        IMAGE_NAME = 'my-node-app'
+        IMAGE_NAME = 'mychatapp'
         IMAGE_TAG = 'latest'
     }
     stages {
@@ -36,7 +36,7 @@ pipeline {
               }
             }  
           steps {
-                withDockerRegistry([credentialsId: 'docker-hub-credentials', url: 'https://index.docker.io/v1/']) {
+                withDockerRegistry([credentialsId: 'docker-creds', url: 'https://index.docker.io/v1/']) {
                     script {
                         sh "docker tag ${IMAGE_NAME}:${IMAGE_TAG} shubhamborkar/${IMAGE_NAME}:${IMAGE_TAG}"
                         sh "docker push shubhamborkar/${IMAGE_NAME}:${IMAGE_TAG}"
