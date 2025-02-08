@@ -60,8 +60,8 @@ pipeline {
                 sh '''
                 echo Build Succeed, creating the docker image
                 echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-                docker build -t shubhamborkar/studentapp:latest .
-                docker push shubhamborkar/studentapp:latest
+                docker build -t shubhamborkar/cbz-java:v1.0 .
+                docker push shubhamborkar/cbz-java:latest
                 '''
             }
         }
