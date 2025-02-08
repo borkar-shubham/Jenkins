@@ -58,11 +58,13 @@ pipeline {
             }
             steps {
                 sh '''
-                echo Build Succeed, creating the docker image
+                echo Build Succeed, Creating the docker image..
                 sudo chmod 666 /var/run/docker.sock
+                echo Logging in the Docker hub..
                 cat docker-pass.txt | docker login -u shubhamborkar --password-stdin
-                pwd
+                echo Building the docker image..
                 docker build -t shubhamborkar/cbz-java:latest .
+                echo Pushing the image onto the Dockerhub..
                 docker push shubhamborkar/cbz-java:latest
                 '''
             }
