@@ -38,8 +38,11 @@ pipeline {
           steps {
                 withDockerRegistry([credentialsId: 'docker-creds', url: 'https://index.docker.io/v1/']) {
                     script {
-                        sh "docker tag ${IMAGE_NAME}:${IMAGE_TAG} shubhamborkar/${IMAGE_NAME}:${IMAGE_TAG}"
-                        sh "docker push shubhamborkar/${IMAGE_NAME}:${IMAGE_TAG}"
+                        sh '''
+                        sudo chmod +x /var/run/docker.sock
+                        docker tag ${IMAGE_NAME}:${IMAGE_TAG} shubhamborkar/${IMAGE_NAME}:${IMAGE_TAG}
+                        docker push shubhamborkar/${IMAGE_NAME}:${IMAGE_TAG}
+                        '''
                     }
                 }
             }
