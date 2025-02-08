@@ -16,6 +16,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
+                    sh "sudo chmod 666 /var/run/docker.sock"
                     sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
                 }
             }
