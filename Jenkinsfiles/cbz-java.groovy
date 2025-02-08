@@ -5,10 +5,10 @@ pipeline {
     // parameters {
     //     string(name: 'project_repo', defaultValue: '', description: 'Please enter your project repo')
     // }
-    environment {
-        DOCKER_USER = credentials('docker-username')
-        DOCKER_PASS = credentials('docker-password')
-    }
+    // environment {
+    //     DOCKER_USER = credentials('docker-username')
+    //     DOCKER_PASS = credentials('docker-password')
+    // }
     stages {
         stage('CloneGitRepo') {
             steps {
@@ -59,7 +59,7 @@ pipeline {
             steps {
                 sh '''
                 echo Build Succeed, creating the docker image
-                echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                echo docker-pass.txt | docker login -u shubhamborkar --password-stdin
                 docker build -t shubhamborkar/cbz-java:v1.0 .
                 docker push shubhamborkar/cbz-java:v1.0
                 '''
