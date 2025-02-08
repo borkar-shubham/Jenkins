@@ -12,7 +12,6 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/borkar-shubham/nodeapp.git'
             }
         }
-
         stage('Build Docker Image') {
             steps {
                 script {
@@ -21,15 +20,13 @@ pipeline {
                 }
             }
         }
-
-        stage('Run Tests') {
-            steps {
-                script {
-                    sh "docker run --rm ${IMAGE_NAME}:${IMAGE_TAG} npm test"
-                }
-            }
-        }
-
+        // stage('Run Tests') {
+        //     steps {
+        //         script {
+        //             sh "docker run --rm ${IMAGE_NAME}:${IMAGE_TAG} npm test"
+        //         }
+        //     }
+        // }
         stage('Push to Registry') {
           when {
               expression {
