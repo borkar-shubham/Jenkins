@@ -59,7 +59,7 @@ pipeline {
             steps {
                 sh '''
                 echo Build Succeed, creating the docker image
-                echo docker-pass.txt | docker login -u shubhamborkar --password-stdin
+                cat docker-pass.txt | docker login -u shubhamborkar --password-stdin
                 docker build -t shubhamborkar/cbz-java:v1.0 .
                 docker push shubhamborkar/cbz-java:v1.0
                 '''
