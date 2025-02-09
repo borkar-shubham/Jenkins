@@ -6,7 +6,7 @@ pipeline {
     parameters {
         string(name: 'person', defaultValue: 'Saurav Sharma', description: "Who are you?")
         booleanParam(name: 'isMale', defaultValue: true, description: "")
-        choice(name: 'City', choices: ['Jaipur','Mumbai','Pune' ], description: "")
+        choice(name: 'City', choices: ['Jaipur','Mumbai','Pune' ], description: "Select Your City")
     }
     stages {
         stage('Run A command') {
