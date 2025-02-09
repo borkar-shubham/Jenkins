@@ -4,13 +4,13 @@ pipeline {
     }
     environment {
         DOCKER_CREDS = credentials('docker-creds')
-        IMAGE_NAME = 'mychatapp'
+        IMAGE_NAME = 'nodechatapp'
         IMAGE_TAG = 'latest'
     }
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', url: 'https://github.com/borkar-shubham/nodeapp.git'
+                git branch: 'main', url: 'https://github.com/borkar-shubham/node-chat-app.git'
             }
         }
         stage('Build Docker Image') {
