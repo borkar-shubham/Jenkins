@@ -38,5 +38,13 @@ pipeline {
                 }
             }
         }
+        stage('Clean Workspace') {
+            steps {
+                script {
+                    echo "Cleaning up workspace..."
+                    deleteDir() // Deletes all files in the workspace
+                }
+            }
+        }
     }
 }
