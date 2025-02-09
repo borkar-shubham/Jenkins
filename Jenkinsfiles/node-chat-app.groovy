@@ -30,11 +30,11 @@ pipeline {
         // }
         stage('Login to DockerHub') {
             steps {
-                // script {
-                //     withDockerRegistry([credentialsId: 'docker-creds', url: 'https://index.docker.io/v1/']) {
-                //         sh "docker login -u \$DOCKER_USERNAME -p \$DOCKER_PASSWORD"
-                //     }
-                sh 'echo $DOCKER_CREDS_PSW | docker login -u $DOCKER_CREDS_USR --password-stdin'
+                script {
+                    // withDockerRegistry([credentialsId: 'docker-creds', url: 'https://index.docker.io/v1/']) {
+                    //     sh "docker login -u \$DOCKER_USERNAME -p \$DOCKER_PASSWORD"
+                    // }
+                    sh 'echo $DOCKER_CREDS_PSW | docker login -u $DOCKER_CREDS_USR --password-stdin'
                 }
             }
         }
